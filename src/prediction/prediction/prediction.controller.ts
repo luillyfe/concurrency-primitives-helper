@@ -9,6 +9,8 @@ import {
 
 import { ConcurrentService } from '../concurrent/concurrent.service';
 
+import { cleanJSONString } from 'src/helpers/dataFormatting';
+
 @Controller('predict')
 export class PredictionController {
   constructor(private readonly concurrentService: ConcurrentService) {}
@@ -33,8 +35,7 @@ export class PredictionController {
 
     // If the format parameter is 'JSON or json' return JSON object
     if (format.toLowerCase() === 'json') {
-      // TODO: Create cleanJSONString helper
-      return await this.concurrentService.predict(text);
+      return cleanJSONString(await this.concurrentService.predict(text));
     }
 
     // Call the predict method from the concurrentService
