@@ -8,7 +8,6 @@ import {
 } from '@nestjs/common';
 
 import { ConcurrentService } from '../concurrent/concurrent.service';
-import { cleanJSONString } from '../helpers';
 
 @Controller('predict')
 export class PredictionController {
@@ -34,7 +33,8 @@ export class PredictionController {
 
     // If the format parameter is 'JSON or json' return JSON object
     if (format.toLowerCase() === 'json') {
-      return cleanJSONString(await this.concurrentService.predict(text));
+      // TODO: Create cleanJSONString helper
+      return await this.concurrentService.predict(text);
     }
 
     // Call the predict method from the concurrentService
