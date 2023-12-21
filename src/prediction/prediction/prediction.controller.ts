@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 
 import { ConcurrentService } from '../concurrent/concurrent.service';
+import { cleanJSONString } from '../helpers';
 
 @Controller('predict')
 export class PredictionController {
@@ -38,19 +39,5 @@ export class PredictionController {
 
     // Call the predict method from the concurrentService
     return await this.concurrentService.predict(text);
-  }
-}
-// Generate a function to remove any invalid character from an input string.
-// The function will take in a string and return a string
-// The function will use a regular expression to remove any invalid characters.
-function cleanJSONString(text: string) {
-  // remove all backticks from text
-  text = text.replace(/`/g, '');
-
-  try {
-    return JSON.parse(text);
-  } catch (error) {
-    console.error(error);
-    return text;
   }
 }
