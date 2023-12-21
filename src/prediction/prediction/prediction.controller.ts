@@ -33,7 +33,7 @@ export class PredictionController {
 
     // If the format parameter is 'JSON or json' return JSON object
     if (format.toLowerCase() === 'json') {
-      return jsonfy(await this.concurrentService.predict(text));
+      return cleanJSONString(await this.concurrentService.predict(text));
     }
 
     // Call the predict method from the concurrentService
@@ -43,7 +43,7 @@ export class PredictionController {
 // Generate a function to remove any invalid character from an input string.
 // The function will take in a string and return a string
 // The function will use a regular expression to remove any invalid characters.
-function jsonfy(text: string) {
+function cleanJSONString(text: string) {
   // remove all backticks from text
   text = text.replace(/`/g, '');
 
