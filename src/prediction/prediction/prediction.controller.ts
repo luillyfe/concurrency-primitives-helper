@@ -15,7 +15,7 @@ import { cleanJSONString } from '../../helpers/dataFormatting';
 export class PredictionController {
   constructor(private readonly concurrentService: ConcurrentService) {}
   // Endpoint for the prediction API
-  // the get handler method will return a promise that resolves to a string
+  // the post handler method will return a promise that resolves to a string
   // the string will be the output of the predict method from the concurrentService
   // the predict method will take in a string and return a string
   @Post()
@@ -40,5 +40,20 @@ export class PredictionController {
 
     // Call the predict method from the concurrentService
     return await this.concurrentService.predict(text);
+  }
+
+  // Endpoint for the prediction/todos API.
+  // The post handler method will return a promise which resolve to an string.
+  // The string will contain all the todos return by the concurrent service.
+  @Post('/todos')
+  @Header('Content-Type', 'application/json')
+  async predictTodos(@Query('format') format = 'json'): Promise<string> {
+    // If the format parameter is 'JSON or json' return JSON object
+    if (format.toLowerCase() === 'json') {
+      return cleanJSONString(await this.concurrentService.predictTodos());
+    }
+
+    // Call the predictTodos method from the concurrentService
+    return await this.concurrentService.predictTodos();
   }
 }
