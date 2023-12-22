@@ -44,9 +44,12 @@ describe('PredictionController', () => {
     it('should return the output of the predict method from the concurrentService', async () => {
       const text = 'test';
       const expectedOutput = 'test output';
+
       jest.spyOn(concurrentService, 'predict').mockImplementation(async () => {
         return expectedOutput;
       });
+      jest.spyOn(console, 'warn').mockImplementation(() => {});
+
       const response = await controller.predict(text);
       expect(response).toEqual(expectedOutput);
     });

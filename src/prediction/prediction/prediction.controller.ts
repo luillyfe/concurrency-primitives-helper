@@ -9,7 +9,7 @@ import {
 
 import { ConcurrentService } from '../concurrent/concurrent.service';
 
-import { cleanJSONString } from 'src/helpers/dataFormatting';
+import { cleanJSONString } from '../../helpers/dataFormatting';
 
 @Controller('predict')
 export class PredictionController {
