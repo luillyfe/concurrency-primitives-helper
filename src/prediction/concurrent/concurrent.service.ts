@@ -61,10 +61,11 @@ export class ConcurrentService {
   }
 
   // Generate the code for the predictTodos async method
-  async predictTodos() {
+  async predictTodos(topic = 'anything') {
     const parts = [
       {
-        text: `What are the top 10 todos for today?. 
+        text: `Dear Gemini Pro, please set the context to ${topic}.
+              What are the top 10 todos for today?. 
               The response should be a list of items.
               Each Item is a JSON object.
               Each JSOn object has the following properties: id, title and description.
