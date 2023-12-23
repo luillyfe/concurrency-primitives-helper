@@ -1,30 +1,39 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Unleashing Gemini Pro's Capabilities with a Developer-Friendly API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+**Harness the power of Gemini Pro for text generation, semantic todo creation, and more—all through a convenient API built with NestJS.**
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Overview
 
-## Description
+This project provides a developer-friendly API that unlocks the capabilities of Gemini Pro, enabling you to:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Generate text** in response to natural language queries.
+- **Create semantic todos** based on a given topic, powered by Gemini Pro's understanding of language nuances.
+
+The project was created from scratch using Duet AI, no prior knowledge of NestJS was required. And Duet AI demonstrated to be a powerful ally for code generation.
+
+## Features
+
+- **Natural language queries** for text generation.
+- **Semantic todo generation** for enhanced productivity and organization.
+- **NestJS framework** for a structured and scalable API.
+- **Clear documentation** and examples for easy integration.
+
+## Target Audience
+
+Developers who want to:
+
+- Integrate Gemini Pro's capabilities into their applications.
+- Build creative text generation features.
+- Enhance productivity with AI-powered todo generation.
+
+## Project Structure
+
+- **main.ts:** Entry point for bootstrapping the application.
+- **app.module.ts:** Root module, importing prediction and configuration modules.
+- **config.module.ts:** Defines environment variables for model name and API key.
+- **prediction.module.ts:** Contains endpoints for interacting with Gemini Pro:
+  - `/predict`: For text generation.
+  - `/predict/todos/`: For semantic todo generation.
 
 ## Installation
 
@@ -58,15 +67,23 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Using the API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Text generation:**
+  - Send a POST request to `/predict` with your query in the request body.
+- **Semantic todo generation:**
+  - Send a POST request to `/predict/todos/` with the topic in the request body.
 
-## Stay in touch
+## Explore Further
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- **Documentation:** [Link to your project's documentation]
+- **Examples:** [Link to example code snippets or usage scenarios]
+
+## Contributing
+
+We welcome contributions! Please see the Contributing Guidelines: [Link to contributing guidelines] for more information.
+
+**Let's unleash the potential of Gemini Pro together!**
 
 ## License
 
