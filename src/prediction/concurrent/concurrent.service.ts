@@ -59,4 +59,26 @@ export class ConcurrentService {
     const response = result.response;
     return response.text();
   }
+
+  // Generate the code for the predictTodos async method
+  async predictTodos() {
+    const parts = [
+      {
+        text: `What are the top 10 todos for today?. 
+              The response should be a list of items.
+              Each Item is a JSON object.
+              Each JSOn object has the following properties: id, title and description.
+              All properties are string.`,
+      },
+    ];
+
+    const result = await this.model.generateContent({
+      contents: [{ role: 'user', parts }],
+      generationConfig: this.generationConfig,
+      safetySettings: this.safetySettings,
+    });
+
+    const response = result.response;
+    return response.text();
+  }
 }
