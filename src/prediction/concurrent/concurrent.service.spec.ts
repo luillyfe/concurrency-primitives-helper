@@ -1,12 +1,34 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from '@nestjs/config';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
 import { ConcurrentService } from './concurrent.service';
+import { GenerativeModel } from '@google/generative-ai';
 
-jest.mock('@google/generative-ai');
+let model: GenerativeModel;
+jest.mock('@google/generative-ai', () => {
+  return {
+    GoogleGenerativeAI: function () {
+      return {
+        getGenerativeModel: () => model,
+      };
+    },
+    HarmCategory: {},
+    HarmBlockThreshold: {},
+  };
+});
+
+beforeAll(() => {
+  // @ts-expect-error: no need to define all properties
+  model = {
+    generateContent: jest.fn().mockImplementation(() => {
+      return {
+        response: {
+          text: () => 'test output',
+        },
+      };
+    }),
+  };
+});
 
 describe('ConcurrentService', () => {
   let service: ConcurrentService;
@@ -24,5 +46,13 @@ describe('ConcurrentService', () => {
 
   it('should be defined', () => {
     expect(service).toBeDefined();
+  });
+
+  it('should call model.generateContent', async () => {
+    // Act
+    await service.predictTodos();
+
+    // Assert
+    expect(model.generateContent).toHaveBeenCalled();
   });
 });
