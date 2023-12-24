@@ -63,8 +63,13 @@ export class ConcurrentService {
   }
 
   // Generate the code for the predictTodos async method
-  async predictTodos() {
-    const parts = [{ text: this.prompt }];
+  async predictTodos(topic = 'anything') {
+    const parts = [
+      {
+        text:
+          `Dear Gemini Pro, please set the context to ${topic}.` + this.prompt,
+      },
+    ];
 
     const result = await this.model.generateContent({
       contents: [{ role: 'user', parts }],
