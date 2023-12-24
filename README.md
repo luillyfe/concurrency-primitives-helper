@@ -34,6 +34,7 @@ Developers who want to:
 - **prediction.module.ts:** Contains endpoints for interacting with Gemini Pro:
   - `/predict`: For text generation.
   - `/predict/todos/`: For semantic todo generation.
+  - `/predict/gcp-exam/`: For question generation for the GCP Professional Cloud Architect exam.
 
 ## Installation
 
@@ -70,9 +71,27 @@ $ npm run test:cov
 ## Using the API
 
 - **Text generation:**
+
   - Send a POST request to `/predict` with your query in the request body.
+    This will be free form based input. So feel free to ask anything you want.
+
 - **Semantic todo generation:**
+
   - Send a POST request to `/predict/todos/` with the topic in the request body.
+    Semantic todo generation is based on the topic you provide. For instance, if you want to generate todos about gaming, then you can send `gaming` as the topic. The endpoint is expecting from you to set the topic in the request's body.
+
+        {
+            "topic": "gaming"
+        }
+
+- **GCP Professional Cloud Architect exam question generation:**
+
+  - Send a POST request to `/predict/gcp-exam/` with the number of questions you want to generate in the request body.
+    The endpoint is expecting from you to set the number of questions in the request's body (optional). If you don't set the number of questions, the endpoint will generate 1 question by default.
+
+        {
+            "numQuestions": 5
+        }
 
 ## Explore Further
 
@@ -87,4 +106,4 @@ We welcome contributions! Please see the Contributing Guidelines: [Link to contr
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is [MIT licensed](LICENSE).
