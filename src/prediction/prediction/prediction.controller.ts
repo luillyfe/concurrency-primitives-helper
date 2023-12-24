@@ -47,14 +47,17 @@ export class PredictionController {
   // The string will contain all the todos return by the concurrent service.
   @Post('/todos')
   @Header('Content-Type', 'application/json')
-  async predictTodos(@Query('format') format = 'json'): Promise<string> {
+  async predictTodos(
+    @Body('topic') topic = '',
+    @Query('format') format = 'json',
+  ): Promise<string> {
     // If the format parameter is 'JSON or json' return JSON object
     if (format.toLowerCase() === 'json') {
-      return cleanJSONString(await this.concurrentService.predictTodos());
+      return cleanJSONString(await this.concurrentService.predictTodos(topic));
     }
 
     // Call the predictTodos method from the concurrentService
-    return await this.concurrentService.predictTodos();
+    return await this.concurrentService.predictTodos(topic);
   }
 
   // Endpoint for the predict/gcp-exam API
