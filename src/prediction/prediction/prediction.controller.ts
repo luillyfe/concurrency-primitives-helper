@@ -56,4 +56,14 @@ export class PredictionController {
     // Call the predictTodos method from the concurrentService
     return await this.concurrentService.predictTodos();
   }
+
+  // Endpoint for the predict/gcp-exam API
+  // The post handler method will return a promise which resolve to an string.
+  // The string will contain all the todos return by the concurrent service.
+  @Post('/gcp-exam')
+  @Header('Content-Type', 'application/json')
+  async predictGcpExam(): Promise<string> {
+    // Call the predictGcpExam method from the concurrentService
+    return await this.concurrentService.predictGcpExam();
+  }
 }
