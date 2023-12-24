@@ -11,6 +11,7 @@ import {
 @Injectable()
 export class ConcurrentService {
   private model: GenerativeModel;
+  private prompt: string;
 
   private safetySettings = [
     {
@@ -44,6 +45,7 @@ export class ConcurrentService {
 
     const genAI = new GoogleGenerativeAI(API_KEY);
     this.model = genAI.getGenerativeModel({ model: MODEL_NAME });
+    this.prompt = this.configService.get<string>('TODOS_PROMPT');
   }
 
   async predict(text: string) {
@@ -64,12 +66,8 @@ export class ConcurrentService {
   async predictTodos(topic = 'anything') {
     const parts = [
       {
-        text: `Dear Gemini Pro, please set the context to ${topic}.
-              What are the top 10 todos for today?. 
-              The response should be a list of items.
-              Each Item is a JSON object.
-              Each JSOn object has the following properties: id, title and description.
-              All properties are string.`,
+        text:
+          `Dear Gemini Pro, please set the context to ${topic}.` + this.prompt,
       },
     ];
 
