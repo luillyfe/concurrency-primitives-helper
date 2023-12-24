@@ -17,6 +17,7 @@ describe('PredictionController', () => {
           provide: ConcurrentService,
           useValue: {
             predict: jest.fn().mockReturnValue('test output'),
+            predictGcpExam: jest.fn().mockReturnValue('test output'),
           },
         },
       ],
@@ -51,6 +52,14 @@ describe('PredictionController', () => {
       jest.spyOn(console, 'warn').mockImplementation(() => {});
 
       const response = await controller.predict(text);
+      expect(response).toEqual(expectedOutput);
+    });
+
+    it('should called the predictGcpExam method from the concurrentService', async () => {
+      const expectedOutput = 'test output';
+      const response = await controller.predictGcpExam();
+
+      expect(concurrentService.predictGcpExam).toHaveBeenCalled();
       expect(response).toEqual(expectedOutput);
     });
   });
