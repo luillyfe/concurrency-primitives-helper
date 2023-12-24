@@ -32,6 +32,7 @@ beforeAll(() => {
 
 describe('ConcurrentService', () => {
   let service: ConcurrentService;
+  let configService: ConfigService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -41,6 +42,7 @@ describe('ConcurrentService', () => {
       ],
     }).compile();
 
+    configService = module.get<ConfigService>(ConfigService);
     service = module.get<ConcurrentService>(ConcurrentService);
   });
 
@@ -54,5 +56,15 @@ describe('ConcurrentService', () => {
 
     // Assert
     expect(model.generateContent).toHaveBeenCalled();
+  });
+
+  it('should return the config service to get the prompt', async () => {
+    // Act
+    const result = await service.predictGcpExam();
+
+    // Assert
+    expect(configService.get).toHaveBeenCalledWith('EXAM_PROMPT');
+    expect(model.generateContent).toHaveBeenCalled();
+    expect(result).toBe('test output');
   });
 });
