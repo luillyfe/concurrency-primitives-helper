@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+  title: Prediction API
+  description:
+    Harness the power of Gemini Pro for text generation, semantic todo creation,
+    and more—all through a convenient API built with NestJS.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/ # Replace with your API's base URL
+
+paths:
+  /predict:
+    post:
+      summary: Performs a prediction based on input text
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+      responses:
+        '200':
+          description: Successful prediction
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  predictions:
+                    type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /predict/todos:
+    post:
+      summary: Generates semantically similar todos based on a topic
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                topic:
+                  type: string
+      responses:
+        '200':
+          description: Successful todo generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  todos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        description:
+                          type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
+
+  /predict/gcp-exam:
+    post:
+      summary: Generates question/answers for GCP Professional Cloud Architect exam
+      responses:
+        '200':
+          description: Successful question/answer generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  prediction:
+                    type: object
+                    properties:
+                      context:
+                        type: string
+                      situationalQuestion:
+                        type: string
+                      possibleSolutions:
+                        type: object
+                        properties:
+                          a:
+                            type: string
+                          b:
+                            type: string
+                          c:
+                            type: string
+                          d:
+                            type: string
+                      mostAppropriateAnswer:
+                        type: object
+                      explanation:
+                        type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Internal server error
