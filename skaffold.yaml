@@ -4,4 +4,5 @@ metadata:
   name: prediction-api
 manifests:
   rawYaml:
+    - k8s/secrets.yaml
     - k8s/web.yaml

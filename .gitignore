@@ -36,3 +36,5 @@ lerna-debug.log*
 
 # environment files
 *.env
+/prompts/**
+/k8s/secrets.yaml
